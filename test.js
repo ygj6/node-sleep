@@ -57,6 +57,28 @@ describe('usleep', function () {
     assertApproxEqual(end - start, sleepTime / 1000);
   });
 
+  it('works for values around 100 milliseconds', function () {
+    var sleepTime = 100000;
+    var start = process.hrtime();
+    sleep.usleep(sleepTime);
+    var end = process.hrtime(start);
+    var diff = end[0] * 1000000 + Math.round(end[1] / 1000);
+    if (diff < 80000 || diff > 120000) {
+      assert.fail('deviation was too large: 100000 vs. ' + diff);
+    }
+  });
+
+  it('works for values around 250 milliseconds', function () {
+    var sleepTime = 250000;
+    var start = process.hrtime();
+    sleep.usleep(sleepTime);
+    var end = process.hrtime(start);
+    var diff = end[0] * 1000000 + Math.round(end[1] / 1000);
+    if (diff < 200000 || diff > 300000) {
+      assert.fail('deviation was too large: 250000 vs. ' + diff);
+    }
+  });
+
   it('works for values larger than a second', function () {
     this.timeout(4000); // necessary for mocha to not complain
     var sleepTime = 3000000;
