@@ -1,3 +1,10 @@
+os:
+  - linux
+  - osx
+sudo: false
+dist: trusty
+osx_image: xcode10.1
+
 language: node_js
 node_js:
   - "stable"
