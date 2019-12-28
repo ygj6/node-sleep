@@ -2,8 +2,8 @@ os:
   - linux
   - osx
 sudo: false
-dist: trusty
-osx_image: xcode10.1
+dist: bionic
+osx_image: xcode11.3
 
 language: node_js
 node_js:
